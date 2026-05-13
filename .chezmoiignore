@@ -1,0 +1,9 @@
+# Ignore Windows paths on Unix
+{{ if ne .chezmoi.os "windows" }}
+AppData/
+{{ end }}
+
+# (Optional later) Ignore Unix-only paths on Windows
+# {{ if eq .chezmoi.os "windows" }}
+# dot_zshrc
+# {{ end }}
