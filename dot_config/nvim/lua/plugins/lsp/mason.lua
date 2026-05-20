@@ -22,7 +22,6 @@ return {
     })
 
     mason_lspconfig.setup({
-      -- list of servers for mason to install
       ensure_installed = {
         "ts_ls",
         "html",
@@ -35,7 +34,11 @@ return {
         "prismals",
         "pyright",
         "jdtls",
-        "clangd"
+        "clangd",
+      },
+      -- jdtls is managed by nvim-jdtls (plugins/lsp/jdtls.lua), not auto-started
+      automatic_enable = {
+        exclude = { "jdtls" },
       },
     })
   end,

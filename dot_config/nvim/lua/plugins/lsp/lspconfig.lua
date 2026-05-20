@@ -4,15 +4,9 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -51,7 +45,7 @@ return {
         keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
         opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+        keymap.set("n", "<leader>dl", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         opts.desc = "Go to previous diagnostic"
         keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
@@ -109,41 +103,60 @@ return {
 
     -- GraphQL configuration
     vim.lsp.config('graphql', {
-      filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+      filetypes = { "graphql", "svelte", "typescriptreact", "javascriptreact" },
     })
 
-    -- Emmet configuration 
+    -- Emmet configuration
     vim.lsp.config('emmet_ls', {
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
     })
 
-    -- Lua configuration 
+    -- Lua configuration
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
-          -- make the language server recognize "vim" global
           diagnostics = { globals = { "vim" } },
           completion = { callSnippet = "Replace" },
         },
       },
     })
 
-    -- Python configuration 
+    -- Python configuration
     vim.lsp.config("pyright", {
       settings = {
         python = {
           analysis = {
-            typeCheckingMode = "basic",  -- Can be "off", "basic", or "strict"
+            typeCheckingMode = "basic",
             autoSearchPaths = true,
             diagnosticMode = "workspace",
             useLibraryCodeForTypes = true,
             diagnosticSeverityOverrides = {
-              reportUnusedVariable = "warning",  -- Customize diagnostics if needed
+              reportUnusedVariable = "warning",
               reportMissingImports = "error",
             },
           },
         },
       },
+    })
+
+    -- Tailwind: restrict to filetypes we actually use (default list causes unknown filetype warnings)
+    vim.lsp.config('tailwindcss', {
+      filetypes = { "html", "css", "scss", "less", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte" },
+    })
+
+    -- Enable all servers (jdtls is managed by nvim-jdtls separately)
+    vim.lsp.enable({
+      "ts_ls",
+      "html",
+      "cssls",
+      "tailwindcss",
+      "svelte",
+      "lua_ls",
+      "graphql",
+      "emmet_ls",
+      "prismals",
+      "pyright",
+      "clangd",
     })
   end,
 }

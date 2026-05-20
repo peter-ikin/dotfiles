@@ -22,7 +22,7 @@ return {
             dashboard.button("SPC ee", "  > Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
             dashboard.button("SPC ff", "󰱼  > Find File", "<cmd>Telescope find_files<CR>"),
             dashboard.button("SPC fg", "  > Find Word (grep)", "<cmd>Telescope live_grep<CR>"),
-            dashboard.button("SPC wr", "󰁯  > Restore Session for Current Directory", "<cmd>SessionRestore<CR>"), 
+            dashboard.button("SPC sr", "󰁯  > Restore Session for Current Directory", "<cmd>AutoSession restore<CR>"), 
             dashboard.button("q", "  > Quit NVIM", "<cmd>qa<CR>"),
         }
 

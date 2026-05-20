@@ -10,7 +10,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     -- Java test adapter
     "rcasia/neotest-java",
-         "mfussenegger/nvim-jdtls",
+    "mfussenegger/nvim-jdtls",
+    -- Debugging
+    "mfussenegger/nvim-dap",
+    "rcarriga/nvim-dap-ui",
+    "theHamsta/nvim-dap-virtual-text",
   },
   config = function()
     require("neotest").setup({
