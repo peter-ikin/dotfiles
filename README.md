@@ -1,8 +1,8 @@
-# 🌍 Cross-Platform Dotfiles
+# Cross-Platform Dotfiles
 
 Managed with [Chezmoi](https://chezmoi.io/), designed to work seamlessly across macOS, Linux, and Windows from a single overarching repository.
 
-## 🏗️ Current Architecture
+## Current Architecture
 
 This repository currently serves as a unified, cross-platform skeleton for **Neovim**.
 
@@ -11,7 +11,7 @@ Because system paths diverge radically between Unix (`~/.config/nvim`) and Windo
 2. **Windows Bridge:** On Windows, Chezmoi ignores the Unix paths and instead drops a minimal `init.lua` file into the `AppData` directory. This script dynamically points Neovim's runtime path back to the shared Unix directory.
 3. **Reproducible Environments:** `lazy-lock.json` is strictly tracked to guarantee that all machines run the exact same plugin commit states, preventing cross-platform crashes.
 
-## 🚀 Installation
+## Installation
 
 ### macOS / Linux
 ```bash
@@ -33,7 +33,7 @@ chezmoi init https://github.com/yourusername/dotfiles.git
 chezmoi apply
 ```
 
-## 🤫 Managing Secrets
+## Managing Secrets
 
 ** Credentials, API keys, PATs etc. are never committed to this repository.**
 
@@ -42,7 +42,7 @@ This system is designed to use the `.local` convention. To add machine-specific 
 2. Store your exports and environment variables there.
 3. These file extensions are globally ignored via `.chezmoiignore` and will be rejected if you attempt to add them to version control.
 
-## 📦 Updating Neovim Plugins
+## Updating Neovim Plugins
 
 To avoid Git merge conflicts on the lockfile, treat your primary machine as the source of truth for plugin updates:
 1. Open Neovim on your primary machine and run `:Lazy update`.
