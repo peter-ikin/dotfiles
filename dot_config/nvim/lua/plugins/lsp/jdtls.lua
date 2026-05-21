@@ -55,9 +55,10 @@ return {
             local project_name = vim.fn.fnamemodify(root_dir or vim.fn.getcwd(), ":p:h:t")
             local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. project_name
 
+            local java_cmd = vim.env.JDTLS_JAVA_EXECUTABLE or "java"
             local config = {
                 cmd = {
-                    "java",
+                    java_cmd,
                     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
                     "-Dosgi.bundles.defaultStartLevel=4",
                     "-Declipse.product=org.eclipse.jdt.ls.core.product",

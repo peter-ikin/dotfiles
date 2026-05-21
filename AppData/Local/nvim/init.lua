@@ -5,5 +5,10 @@ local unix_config_path = vim.fn.expand("~") .."/.config/nvim"
 vim.opt.runtimepath:prepend(unix_config_path)
 vim.opt.packpath:prepend(unix_config_path)
 
+package.path = package.path .. ";" .. unix_config_path .. "\\lua\\?.lua;" .. unix_config_path .. "\\lua\\?\\init.lua"
+
+vim.env.MYVIMRC = unix_config_path .. "\\init.lua"
+
 -- Execute your actual init.lua
-dofile(unix_config_path .. "/init.lua")
+dofile(vim.env.MYVIMRC)
+
