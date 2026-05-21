@@ -7,3 +7,4 @@ AppData/
 # {{ if eq .chezmoi.os "windows" }}
 # dot_zshrc
 # {{ end }}
+**/.DS_Store
