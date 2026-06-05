@@ -1,7 +1,7 @@
 return {
     'github/copilot.vim',
     config = function()
-        vim.keymap.set('i', '<leader><CR>', 'copilot#Accept("")', {
+        vim.keymap.set('i', '<C-y>', 'copilot#Accept("")', {
             expr = true,
             replace_keycodes = false
         })
