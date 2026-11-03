@@ -15,6 +15,13 @@ require("lazy").setup({ { import = "plugins" }, { import = "plugins.lsp" }, { im
     checker = {
         enabled = true,
         notify = false,
+        frequency = 86400, -- check for plugin updates once a day (default is hourly)
+    },
+    performance = {
+        rtp = {
+            -- built-in plugins that aren't used (nvim-tree replaces netrw)
+            disabled_plugins = { "gzip", "tarPlugin", "netrwPlugin", "tohtml", "tutor" },
+        },
     },
     change_detection = {
         notify = false,

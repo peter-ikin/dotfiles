@@ -1,5 +1,8 @@
 return {
   "williamboman/mason.nvim",
+  -- Lazy-loaded: when a file is opened (puts mason's bin on PATH before LSPs start) or via :Mason*
+  event = { "BufReadPre", "BufNewFile" },
+  cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonUpdate", "MasonLog" },
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
   },

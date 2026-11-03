@@ -7,6 +7,8 @@ return {
             auto_restore = false,
             suppressed_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop/" },
             bypass_save_filetypes = { "NvimTree" },
+            -- don't load telescope at startup just to register :Telescope session-lens
+            session_lens = { load_on_setup = false },
             post_restore_cmds = { function()
                 vim.schedule(function()
                     require("nvim-tree.api").tree.open()

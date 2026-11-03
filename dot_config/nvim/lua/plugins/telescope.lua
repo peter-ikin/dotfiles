@@ -1,5 +1,15 @@
 return {
     "nvim-telescope/telescope.nvim",
+    -- Lazy-loaded on :Telescope (used by alpha + LSP keymaps) or the <leader>f keymaps
+    cmd = "Telescope",
+    keys = {
+        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+        { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Telescope find recent files (oldfiles)" },
+        { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
+        { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Telescope grep string under cursor" },
+        { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope find buffers" },
+    },
     dependencies = {
         "nvim-lua/plenary.nvim",
         {
@@ -35,15 +45,5 @@ return {
         })
 
         telescope.load_extension("fzf")
-
-        -- set keymaps
-        local keymap = vim.keymap
-
-        keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope find files" })
-        keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Telescope find recent files (oldfiles)" })
-        keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Telescope live grep" })
-        keymap.set("n", "<leader>fs", "<cmd>Telescope grep_string<cr>", { desc = "Telescope grep string under cursor" })
-        keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Telescope help tags" })
-        keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Telescope find buffers" })
     end,
 }

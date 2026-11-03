@@ -1,12 +1,24 @@
 -- Neotest configuration for Java/Maven testing
--- Add this to your Neovim configuration (e.g., ~/.config/nvim/lua/plugins/neotest.lua)
+-- Lazy-loaded: loads on first use of a <leader>t mapping or :Neotest
+
+local function nt() return require("neotest") end
 
 return {
   "nvim-neotest/neotest",
+  cmd = { "Neotest", "NeotestJava" },
+  keys = {
+    { "<leader>tn", function() nt().run.run() end, desc = "Run nearest test" },
+    { "<leader>tf", function() nt().run.run(vim.fn.expand("%")) end, desc = "Run current test file" },
+    { "<leader>ta", function() nt().run.run(vim.fn.getcwd()) end, desc = "Run all tests" },
+    { "<leader>td", function() nt().run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
+    { "<leader>ts", function() nt().summary.toggle() end, desc = "Toggle test summary" },
+    { "<leader>to", function() nt().output_panel.toggle() end, desc = "Toggle test output" },
+    { "<leader>tO", function() nt().output.open({ enter = true }) end, desc = "Show test output" },
+    { "<leader>tS", function() nt().run.stop() end, desc = "Stop tests" },
+  },
   dependencies = {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
     -- Java test adapter
     "rcasia/neotest-java",
@@ -68,48 +80,5 @@ return {
         },
       },
     })
-
-    -- Key mappings for test running
-    local neotest = require("neotest")
-    
-    -- Run the nearest test
-    vim.keymap.set("n", "<leader>tn", function()
-      neotest.run.run()
-    end, { desc = "Run nearest test" })
-    
-    -- Run the current file
-    vim.keymap.set("n", "<leader>tf", function()
-      neotest.run.run(vim.fn.expand("%"))
-    end, { desc = "Run current test file" })
-    
-    -- Run all tests
-    vim.keymap.set("n", "<leader>ta", function()
-      neotest.run.run(vim.fn.getcwd())
-    end, { desc = "Run all tests" })
-    
-    -- Debug the nearest test (requires nvim-dap)
-    vim.keymap.set("n", "<leader>td", function()
-      neotest.run.run({ strategy = "dap" })
-    end, { desc = "Debug nearest test" })
-    
-    -- Toggle test summary window
-    vim.keymap.set("n", "<leader>ts", function()
-      neotest.summary.toggle()
-    end, { desc = "Toggle test summary" })
-    
-    -- Toggle test output panel
-    vim.keymap.set("n", "<leader>to", function()
-      neotest.output_panel.toggle()
-    end, { desc = "Toggle test output" })
-    
-    -- Show output of nearest test
-    vim.keymap.set("n", "<leader>tO", function()
-      neotest.output.open({ enter = true })
-    end, { desc = "Show test output" })
-    
-    -- Stop running tests
-    vim.keymap.set("n", "<leader>tS", function()
-      neotest.run.stop()
-    end, { desc = "Stop tests" })
   end,
 }

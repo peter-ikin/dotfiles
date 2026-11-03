@@ -128,7 +128,7 @@ return {
           analysis = {
             typeCheckingMode = "basic",
             autoSearchPaths = true,
-            diagnosticMode = "workspace",
+            diagnosticMode = "openFilesOnly", -- "workspace" analyses every file in the project (slow)
             useLibraryCodeForTypes = true,
             diagnosticSeverityOverrides = {
               reportUnusedVariable = "warning",
